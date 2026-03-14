@@ -4,19 +4,27 @@ import { Github, ExternalLink, Folder } from 'lucide-react';
 
 const projects = [
   {
-    title: 'UPI Playground',
-    description: 'A specialized developer tool to simulate NPCI UPI deep-linking protocols, allowing developers to test payment flows, validate UPI intent URLs, and debug integration issues without touching production systems.',
-    tech: ['React', 'JavaScript', 'Vite', 'Tailwind CSS'],
-    github: 'https://github.com/Abhinandan-KP/upi-playground',
-    external: 'https://upi-playground.vercel.app/',
+    title: 'Anemia Detector',
+    description: 'An ML-powered web application that detects anemia from medical input data using a trained classification model deployed on the frontend.',
+    tech: ['React', 'Machine Learning', 'Vercel'],
+    github: 'https://github.com/Abhinandan-KP/Anemiadetectorfrontend',
+    external: 'https://anemiadetectorfrontend.vercel.app/',
     featured: true,
   },
   {
-    title: '3D Satellite Orbit Visualizer',
-    description: 'A scientific visualization engine that converts raw CSV coordinate data from satellite telemetry into interactive 3D orbital path renderings, enabling real-time trajectory analysis and multi-satellite comparison.',
-    tech: ['Python', 'Pandas', 'Plotly', 'Vercel'],
-    github: 'https://github.com/Abhinandan-KP/orbit-project',
-    external: 'https://orbit-project.vercel.app/',
+    title: 'Phishing Sentinel',
+    description: 'A cybersecurity tool that detects and flags phishing URLs in real-time using pattern recognition and heuristic analysis to protect users from malicious websites.',
+    tech: ['Python', 'Cybersecurity', 'Machine Learning'],
+    github: 'https://github.com/Abhinandan-KP/Phishing-Sentinel',
+    external: '',
+    featured: true,
+  },
+  {
+    title: 'Dijkstra & BFS Maze Visualizer',
+    description: 'An interactive educational tool to visualize Graph Traversal algorithms (Dijkstra\'s shortest path and BFS) on a live maze grid with step-by-step animation of the traversal process.',
+    tech: ['React', 'JavaScript', 'Algorithms'],
+    github: 'https://github.com/Abhinandan-KP/Dijkstra-BFS-Maze-Visualizer',
+    external: 'https://dijkstra-bfs-maze-visualizer.vercel.app/',
     featured: true,
   },
 ];

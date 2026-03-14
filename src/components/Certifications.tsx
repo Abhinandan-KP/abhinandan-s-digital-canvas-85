@@ -26,7 +26,8 @@ const Certifications = () => {
 
   const handleOpen = (cert: any, e: React.MouseEvent) => {
     e.preventDefault();
-    const url = `./assets/certificates/${cert.file}`;
+    const encodedFile = cert.file.split('/').map(encodeURIComponent).join('/');
+    const url = `/assets/certificates/${encodedFile}`;
     if (cert.type === 'pdf') {
       window.open(url, '_blank', 'noopener,noreferrer');
     } else {
@@ -50,7 +51,7 @@ const Certifications = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => {
-              const url = `./assets/certificates/${cert.file}`;
+              const url = `/assets/certificates/${cert.file.split('/').map(encodeURIComponent).join('/')}`;
               
               return (
                 <motion.div
