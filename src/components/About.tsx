@@ -80,10 +80,8 @@ const About = () => {
             <div className="relative w-full aspect-square max-w-[280px] mx-auto">
               {/* Profile image placeholder */}
               <div className="w-full h-full bg-primary/20 rounded relative z-10 overflow-hidden group-hover:mix-blend-normal transition-all duration-300">
-                <div className="absolute inset-0 bg-primary/30 group-hover:bg-transparent transition-all duration-300" />
-                <div className="w-full h-full flex items-center justify-center text-primary font-mono text-4xl">
-                  A
-                </div>
+                <div className="absolute inset-0 bg-primary/30 group-hover:bg-transparent transition-all duration-300 z-10" />
+                <img src="./assets/Abhinandan.png" alt="Abhinandan" className="w-full h-full object-cover" />
               </div>
               {/* Border offset effect */}
               <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-primary rounded z-0 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />

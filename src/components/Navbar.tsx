@@ -5,7 +5,7 @@ const navItems = [
   { num: '01.', label: 'About', href: '#about' },
   { num: '02.', label: 'Work', href: '#work' },
   { num: '04.', label: 'Activity', href: '#activity' },
-  { num: '05.', label: 'Certifications', href: '#certifications' },
+  { num: '05.', label: 'Certificates', href: '#certificates' },
   { num: '06.', label: 'Contact', href: '#contact' },
 ];
 
@@ -55,7 +55,8 @@ const Navbar = () => {
             </motion.a>
           ))}
           <motion.a
-            href="/resume.pdf"
+            href="./assets/resume.pdf"
+            download
             target="_blank"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

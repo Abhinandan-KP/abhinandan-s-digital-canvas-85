@@ -9,7 +9,9 @@ const EmailSidebar = () => {
       className="fixed right-6 md:right-10 bottom-0 hidden md:flex flex-col items-center gap-6 z-40"
     >
       <motion.a
-        href="mailto:abhinandanx538@gmail.com"
+        href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSDZPMZWWwWWBwWrDzhhtZBmmnBhkRNGgNzRtflhBLpqkTMjHCwSlmLTBjVjKPXqrrLBqzsq"
+        target="_blank"
+        rel="noopener noreferrer"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}

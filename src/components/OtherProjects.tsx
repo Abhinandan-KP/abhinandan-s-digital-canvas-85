@@ -4,11 +4,32 @@ import { Folder, Github, ExternalLink } from 'lucide-react';
 
 const otherProjects = [
   {
+    title: 'Anemia Detector',
+    description: 'An ML-powered web application that detects anemia from medical input data using a trained classification model deployed on the frontend.',
+    tech: ['React', 'Machine Learning', 'Vercel'],
+    github: 'https://github.com/Abhinandan-KP/Anemiadetectorfrontend',
+    external: 'https://anemiadetectorfrontend.vercel.app/',
+  },
+  {
+    title: 'Phishing Sentinel',
+    description: 'A cybersecurity tool that detects and flags phishing URLs in real-time using pattern recognition and heuristic analysis to protect users from malicious websites.',
+    tech: ['Python', 'Cybersecurity', 'Machine Learning'],
+    github: 'https://github.com/Abhinandan-KP/Phishing-Sentinel',
+    external: '',
+  },
+  {
+    title: 'Dijkstra & BFS Maze Visualizer',
+    description: 'An interactive educational tool to visualize Graph Traversal algorithms (Dijkstra\'s shortest path and BFS) on a live maze grid with step-by-step animation of the traversal process.',
+    tech: ['React', 'JavaScript', 'Algorithms'],
+    github: 'https://github.com/Abhinandan-KP/Dijkstra-BFS-Maze-Visualizer',
+    external: 'https://dijkstra-bfs-maze-visualizer.vercel.app/',
+  },
+  {
     title: 'Event Management System',
-    description: 'A comprehensive web platform for organizing and managing events with user authentication and event scheduling.',
+    description: 'A full-stack event management platform supporting event creation, registration, scheduling, and attendee management with a clean responsive UI.',
     tech: ['React', 'Node.js', 'MongoDB'],
-    github: 'https://github.com/Abhinandan-KP',
-    external: '#',
+    github: 'https://github.com/Abhinandan-KP/eventManagement1',
+    external: 'https://event-management1-woad.vercel.app/',
   },
 ];
 

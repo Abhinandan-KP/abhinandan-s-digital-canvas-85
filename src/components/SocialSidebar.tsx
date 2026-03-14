@@ -3,7 +3,7 @@ import { Github, Linkedin } from 'lucide-react';
 
 const socials = [
   { icon: Github, href: 'https://github.com/Abhinandan-KP', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/abhinandanx/', label: 'LinkedIn' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/abhinandanx/', label: 'LinkedIn', color: '#0077B5' },
   { 
     icon: () => (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -20,7 +20,8 @@ const socials = [
       </svg>
     ), 
     href: 'https://leetcode.com/u/Abhinandanx538/', 
-    label: 'LeetCode' 
+    label: 'LeetCode',
+    color: '#FFA116'
   },
   { 
     icon: () => (
@@ -57,6 +58,7 @@ const SocialSidebar = () => {
           transition={{ delay: 1.2 + index * 0.1 }}
           className="icon-btn"
           aria-label={social.label}
+          style={social.color ? { color: social.color } : undefined}
         >
           <social.icon />
         </motion.a>

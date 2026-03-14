@@ -38,7 +38,9 @@ const Contact = () => {
         </motion.p>
 
         <motion.a
-          href="mailto:abhinandanx538@gmail.com"
+          href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSDZPMZWWwWWBwWrDzhhtZBmmnBhkRNGgNzRtflhBLpqkTMjHCwSlmLTBjVjKPXqrrLBqzsq"
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.5 }}

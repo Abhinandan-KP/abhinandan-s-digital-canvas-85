@@ -5,26 +5,18 @@ import { Github, ExternalLink, Folder } from 'lucide-react';
 const projects = [
   {
     title: 'UPI Playground',
-    description: 'A specialized developer tool to simulate NPCI UPI deep-linking protocols. It allows developers to debug payment parameters (\'pa\', \'pn\') and mobile intent flows in real-time, featuring strict input validation to reduce integration errors.',
-    tech: ['React', 'JavaScript', 'Vite', 'Tailwind'],
-    github: 'https://github.com/Abhinandan-KP',
-    external: '#',
+    description: 'A specialized developer tool to simulate NPCI UPI deep-linking protocols, allowing developers to test payment flows, validate UPI intent URLs, and debug integration issues without touching production systems.',
+    tech: ['React', 'JavaScript', 'Vite', 'Tailwind CSS'],
+    github: 'https://github.com/Abhinandan-KP/upi-playground',
+    external: 'https://upi-playground.vercel.app/',
     featured: true,
   },
   {
     title: '3D Satellite Orbit Visualizer',
-    description: 'A scientific visualization engine that converts raw CSV coordinate data into interactive 3D spherical trajectories. Engineered a Spherical-to-Cartesian transformation pipeline to map satellite data accurately onto a rotating Earth model.',
+    description: 'A scientific visualization engine that converts raw CSV coordinate data from satellite telemetry into interactive 3D orbital path renderings, enabling real-time trajectory analysis and multi-satellite comparison.',
     tech: ['Python', 'Pandas', 'Plotly', 'Vercel'],
-    github: 'https://github.com/Abhinandan-KP',
-    external: '#',
-    featured: true,
-  },
-  {
-    title: 'Dijkstra & BFS Visualizer',
-    description: 'An interactive educational tool to visualize Graph Traversal algorithms. It effectively demonstrates the time-complexity differences between Weighted (Dijkstra) and Unweighted (BFS) searches with step-by-step frontier expansion.',
-    tech: ['React', 'JavaScript', 'Algorithms'],
-    github: 'https://github.com/Abhinandan-KP',
-    external: '#',
+    github: 'https://github.com/Abhinandan-KP/orbit-project',
+    external: 'https://orbit-project.vercel.app/',
     featured: true,
   },
 ];
