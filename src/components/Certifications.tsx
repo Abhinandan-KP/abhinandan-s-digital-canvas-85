@@ -12,7 +12,6 @@ const certifications = [
   { file: 'Full-Stack Development for beginner.pdf', title: 'Full-Stack Development', type: 'pdf' },
   { file: 'Fundamentals of Object Oriented Programming.pdf', title: 'OOP Fundamentals', type: 'pdf' },
   { file: 'Legacy Responsive Web Design V8.jpeg', title: 'Responsive Web Design (freeCodeCamp)', type: 'image' },
-  { file: 'NOC25CS110S475000450.pdf', title: 'NPTEL Online Certification', type: 'pdf' },
   { file: 'Programming In Java.pdf', title: 'Programming in Java', type: 'pdf' },
   { file: 'UC-6e1bc6b0-a4bd-4bc0-be43-9e3f9aa00df0.pdf', title: 'Udemy Certification', type: 'pdf' },
   { file: 'vit ideathon.jpg', title: 'VIT Ideathon', type: 'image' },

@@ -15,7 +15,7 @@ const technologies = [
 
 const About = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { margin: '-20% 0px -20% 0px' });
 
   return (
     <section id="about" className="py-24 md:py-32 px-6 md:px-12 lg:px-24" ref={ref}>
@@ -78,13 +78,21 @@ const About = () => {
             className="relative group"
           >
             <div className="relative w-full aspect-square max-w-[280px] mx-auto">
-              {/* Profile image placeholder */}
-              <div className="w-full h-full bg-primary/20 rounded relative z-10 overflow-hidden group-hover:mix-blend-normal transition-all duration-300">
-                <div className="absolute inset-0 bg-primary/30 group-hover:bg-transparent transition-all duration-300 z-10" />
-                <img src="./assets/Abhinandan.png" alt="Abhinandan" className="w-full h-full object-cover" />
+              {/* Profile image with blur and tint effect */}
+              <div className="w-full h-full bg-[#112240] rounded relative z-10 overflow-hidden">
+                <div className={`absolute inset-0 bg-primary/20 mix-blend-multiply transition-opacity duration-500 z-10 pointer-events-none ${isInView ? 'opacity-0' : 'opacity-100'}`} />
+                <img 
+                  src="/assets/Abhinandan.png" 
+                  alt="Abhinandan" 
+                  className={`w-full h-full object-cover transition-all duration-700 ${
+                    isInView 
+                      ? 'grayscale-0 blur-none opacity-100' 
+                      : 'grayscale blur-[8px] opacity-40 scale-95'
+                  } group-hover:grayscale-0 group-hover:blur-none group-hover:opacity-100 group-hover:scale-100`} 
+                />
               </div>
               {/* Border offset effect */}
-              <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-primary rounded z-0 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-primary rounded z-0 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
             </div>
           </motion.div>
         </div>
