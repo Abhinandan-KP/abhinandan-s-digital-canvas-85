@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Abhinandan Portfolio - Apple-esque Dark Theme Design System */
+
+@layer base {
+  :root {
+    /* Pure black background - Apple aesthetic */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 100%;
+
+    /* Card surfaces with subtle elevation */
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Apple-style white accent - pure black & white */
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 2%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted grays for secondary text */
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 2%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 100%;
+
+    --radius: 0.25rem;
+
+    /* Custom portfolio tokens */
+    --slate-light: 0 0% 85%;
+    --slate: 0 0% 55%;
+    --slate-dark: 0 0% 35%;
+    --navy: 0 0% 4%;
+    --navy-light: 0 0% 8%;
+    --green: 0 0% 100%;
+    --green-tint: 0 0% 100% / 0.1;
+  }
+
+  .dark {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 2%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 2%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary));
+  }
+}
+
+@layer components {
+  /* Monospace text styling */
+  .font-mono {
+    font-family: 'Fira Code', 'SF Mono', monospace;
+  }
+
+  /* Section heading with numbered prefix */
+  .section-heading {
+    @apply flex items-center gap-4 text-2xl md:text-3xl font-semibold text-foreground mb-10;
+  }
+
+  .section-heading::before {
+    @apply font-mono text-primary text-lg md:text-xl font-normal;
+    content: attr(data-num);
+  }
+
+  .section-heading::after {
+    @apply flex-1 h-px bg-border ml-4;
+    content: '';
+  }
+
+  /* Underline link animation */
+  .link-underline {
+    @apply relative inline-block text-primary;
+  }
+
+  .link-underline::after {
+    @apply absolute w-full scale-x-0 h-px bottom-0 left-0 bg-primary origin-bottom-right transition-transform duration-300;
+    content: '';
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100 origin-bottom-left;
+  }
+
+  /* Tech tag styling */
+  .tech-tag {
+    @apply font-mono text-xs text-muted-foreground;
+  }
+
+  /* Project card hover effect */
+  .project-card {
+    @apply bg-card rounded-lg p-6 md:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/5;
+  }
+
+  /* Icon button styling */
+  .icon-btn {
+    @apply p-2 text-muted-foreground hover:text-primary transition-colors duration-200;
+  }
+
+  /* Vertical text for email sidebar */
+  .vertical-text {
+    writing-mode: vertical-rl;
+    @apply tracking-widest;
+  }
+
+  /* GitHub contribution cell */
+  .contribution-cell {
+    @apply w-2.5 h-2.5 md:w-3 md:h-3 rounded-sm;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
