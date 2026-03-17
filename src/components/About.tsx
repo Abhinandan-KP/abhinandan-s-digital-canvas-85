@@ -86,9 +86,9 @@ const About = () => {
                   alt="Abhinandan" 
                   className={`w-full h-full object-cover transition-all duration-700 ${
                     isInView 
-                      ? 'grayscale-0 blur-none opacity-100' 
-                      : 'grayscale blur-[8px] opacity-40 scale-95'
-                  } group-hover:grayscale-0 group-hover:blur-none group-hover:opacity-100 group-hover:scale-100`} 
+                      ? 'grayscale-0 blur-0 opacity-100' 
+                      : 'grayscale blur-[4px] opacity-60 scale-95'
+                  } group-hover:grayscale-0 group-hover:blur-0 group-hover:opacity-100 group-hover:scale-100`} 
                 />
               </div>
               {/* Border offset effect */}

@@ -3,24 +3,19 @@ import { useRef, useState } from 'react';
 import { ExternalLink, FileText, X, Award } from 'lucide-react';
 
 const certifications = [
-  { file: 'Abhinandan udemy certificate.jpg', title: 'Udemy Web Development', type: 'image' },
-  { file: 'certificate udemy backend.pdf', title: 'Udemy Backend Development', type: 'pdf' },
-  { file: 'Certificate-59.pdf', title: 'Certificate of Completion', type: 'pdf' },
-  { file: 'certificate-abhinandan.png', title: 'Achievement Certificate', type: 'image' },
-  { file: 'cherry+ hackathon certificate.pdf', title: 'Cherry+ Hackathon', type: 'pdf' },
-  { file: 'Database creation etc.pdf', title: 'Database Management', type: 'pdf' },
+  { file: 'Abhinandan udemy certificate.jpg', title: 'Mastering Data Structures & Algorithms using C', type: 'image' },
+  { file: 'certificate udemy backend.pdf', title: 'Udemy Backend  Development', type: 'pdf' },
+  { file: 'Database creation etc.pdf', title: 'Mastering MYSQL: Database Creation, Management & SQL Queries', type: 'pdf' },
   { file: 'Full-Stack Development for beginner.pdf', title: 'Full-Stack Development', type: 'pdf' },
   { file: 'Fundamentals of Object Oriented Programming.pdf', title: 'OOP Fundamentals', type: 'pdf' },
-  { file: 'Legacy Responsive Web Design V8.jpeg', title: 'Responsive Web Design (freeCodeCamp)', type: 'image' },
+  { file: 'Legacy Responsive Web Design V8.jpeg', title: 'Legacy Responsive Web Design V8', type: 'image' },
   { file: 'Programming In Java.pdf', title: 'Programming in Java', type: 'pdf' },
-  { file: 'UC-6e1bc6b0-a4bd-4bc0-be43-9e3f9aa00df0.pdf', title: 'Udemy Certification', type: 'pdf' },
-  { file: 'vit ideathon.jpg', title: 'VIT Ideathon', type: 'image' },
-  { file: 'abhinandan certificate iste.pdf', title: 'ISTE Certificate', type: 'pdf' },
+  { file: 'UC-6e1bc6b0-a4bd-4bc0-be43-9e3f9aa00df0.pdf', title: 'Python Complete Course For Python Beginners', type: 'pdf' },
 ];
 
 const Certifications = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { margin: '-20% 0px -20% 0px' });
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleOpen = (cert: any, e: React.MouseEvent) => {
@@ -36,8 +31,13 @@ const Certifications = () => {
 
   return (
     <>
-      <section id="certificates" className="py-16 md:py-24 px-6 md:px-12 lg:px-24" ref={ref}>
-        <div className="container mx-auto max-w-6xl">
+      <section id="certificates" className="py-16 md:py-24 px-6 md:px-12 lg:px-24 transition-all duration-1000" ref={ref}>
+        <motion.div 
+          className="container mx-auto max-w-6xl"
+          initial={{ opacity: 0, filter: 'blur(10px)' }}
+          animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : { opacity: 0, filter: 'blur(10px)' }}
+          transition={{ duration: 0.8 }}
+        >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -100,7 +100,7 @@ const Certifications = () => {
               );
             })}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Lightbox Modal */}

@@ -31,11 +31,16 @@ const projects = [
 
 const FeaturedProjects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { margin: '-20% 0px -20% 0px' });
 
   return (
-    <section id="work" className="py-24 md:py-32 px-6 md:px-12 lg:px-24" ref={ref}>
-      <div className="container mx-auto max-w-5xl">
+    <section id="work" className="py-24 md:py-32 px-6 md:px-12 lg:px-24 transition-all duration-1000" ref={ref}>
+      <motion.div 
+        className="container mx-auto max-w-5xl"
+        initial={{ opacity: 0, filter: 'blur(10px)' }}
+        animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : { opacity: 0, filter: 'blur(10px)' }}
+        transition={{ duration: 0.8 }}
+      >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -123,7 +128,7 @@ const FeaturedProjects = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

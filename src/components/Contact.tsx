@@ -3,11 +3,16 @@ import { useRef } from 'react';
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { margin: '-20% 0px -20% 0px' });
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-6 md:px-12 lg:px-24" ref={ref}>
-      <div className="container mx-auto max-w-2xl text-center">
+    <section id="contact" className="py-24 md:py-32 px-6 md:px-12 lg:px-24 transition-all duration-1000" ref={ref}>
+      <motion.div 
+        className="container mx-auto max-w-2xl text-center"
+        initial={{ opacity: 0, filter: 'blur(10px)' }}
+        animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : { opacity: 0, filter: 'blur(10px)' }}
+        transition={{ duration: 0.8 }}
+      >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -50,7 +55,7 @@ const Contact = () => {
         >
           Say Hello
         </motion.a>
-      </div>
+      </motion.div>
     </section>
   );
 };
