@@ -79,9 +79,6 @@ npm run dev
 Build the project and deploy the `dist/` folder to any static host:
 
 - **Vercel** — `vercel deploy`
-- **Netlify** — drag & drop `dist/`
-- **GitHub Pages** — via Actions workflow
-
 ---
 
 ## 📄 License
