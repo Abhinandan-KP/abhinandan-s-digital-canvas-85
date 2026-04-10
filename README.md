@@ -81,12 +81,3 @@ Build the project and deploy the `dist/` folder to any static host:
 - **Vercel** — `vercel deploy`
 ---
 
-## 📄 License
-
-MIT © 2026 — feel free to use, fork, and build on top.
-
----
-
-```
-  Made with ♥ and too much coffee
-```
