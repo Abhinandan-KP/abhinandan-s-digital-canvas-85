@@ -1,0 +1,36 @@
+name: GFG Heatmap Scraper
+
+on:
+  schedule:
+    - cron: '0 18 * * *'   # runs daily at midnight IST (18:00 UTC)
+  workflow_dispatch:         # allows manual trigger from GitHub Actions tab
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Puppeteer
+        run: |
+          cd scripts
+          npm init -y
+          npm install puppeteer
+
+      - name: Run GFG scraper
+        run: node scripts/scrape-gfg.js
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/gfg-data.json
+          git diff --cached --quiet || git commit -m "chore: update GFG heatmap data [skip ci]"
+          git push

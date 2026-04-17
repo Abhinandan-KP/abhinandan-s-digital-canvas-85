@@ -19,7 +19,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="font-mono text-primary text-sm mb-4"
         >
-          06. What's Next?
+          05. What's Next?
         </motion.p>
 
         <motion.h2

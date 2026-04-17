@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 const navItems = [
   { num: '01.', label: 'About', href: '#about' },
   { num: '02.', label: 'Work', href: '#work' },
-  { num: '04.', label: 'Activity', href: '#activity' },
-  { num: '05.', label: 'Certificates', href: '#certificates' },
-  { num: '06.', label: 'Contact', href: '#contact' },
+  { num: '03.', label: 'Activity', href: '#activity' },
+  { num: '04.', label: 'Certificates', href: '#certificates' },
+  { num: '05.', label: 'Contact', href: '#contact' },
 ];
 
 const Navbar = () => {
@@ -55,8 +55,7 @@ const Navbar = () => {
             </motion.a>
           ))}
           <motion.a
-            href="./assets/resume.pdf"
-            download
+            href={`./assets/resume.pdf?t=${new Date().getTime()}`}
             target="_blank"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

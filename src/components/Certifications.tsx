@@ -4,13 +4,13 @@ import { ExternalLink, FileText, X, Award } from 'lucide-react';
 
 const certifications = [
   { file: 'Abhinandan udemy certificate.jpg', title: 'Mastering Data Structures & Algorithms using C', type: 'image' },
-  { file: 'certificate udemy backend.pdf', title: 'Udemy Backend  Development', type: 'pdf' },
-  { file: 'Database creation etc.pdf', title: 'Mastering MYSQL: Database Creation, Management & SQL Queries', type: 'pdf' },
-  { file: 'Full-Stack Development for beginner.pdf', title: 'Full-Stack Development', type: 'pdf' },
-  { file: 'Fundamentals of Object Oriented Programming.pdf', title: 'OOP Fundamentals', type: 'pdf' },
+  { file: 'certificate udemy backend-1.jpg', title: 'Udemy Backend  Development', type: 'image' },
+  { file: 'Database creation etc-1.jpg', title: 'Mastering MYSQL: Database Creation, Management & SQL Queries', type: 'image' },
+  { file: 'Full-Stack Development for beginner-1.jpg', title: 'Full-Stack Development', type: 'image' },
+  { file: 'Fundamentals of Object Oriented Programming-1.jpg', title: 'OOP Fundamentals', type: 'image' },
   { file: 'Legacy Responsive Web Design V8.jpeg', title: 'Legacy Responsive Web Design V8', type: 'image' },
-  { file: 'Programming In Java.pdf', title: 'Programming in Java', type: 'pdf' },
-  { file: 'UC-6e1bc6b0-a4bd-4bc0-be43-9e3f9aa00df0.pdf', title: 'Python Complete Course For Python Beginners', type: 'pdf' },
+  { file: 'Programming In Java-1.jpg', title: 'Programming in Java', type: 'image' },
+  { file: 'UC-6e1bc6b0-a4bd-4bc0-be43-9e3f9aa00df0-1.jpg', title: 'Python Complete Course For Python Beginners', type: 'image' },
 ];
 
 const Certifications = () => {
@@ -43,7 +43,7 @@ const Certifications = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="section-heading"
-            data-num="05."
+            data-num="04."
           >
             Certificates
           </motion.h2>

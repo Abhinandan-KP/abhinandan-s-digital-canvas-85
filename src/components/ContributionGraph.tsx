@@ -1,6 +1,147 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Github } from 'lucide-react';
+import { GitHubCalendar } from 'react-github-calendar';
+import LeetCodeHeatmap from './LeetCodeHeatmap';
+/* ═══════════════════════════════════════════════════════════
+   SHARED HeatmapGrid — reused for both CF and GFG
+═══════════════════════════════════════════════════════════ */
+const HeatmapGrid = ({ data = {}, colors, loading, error }: { data?: any, colors: string[], loading: boolean, error: boolean }) => {
+  if (loading) return (
+    <p className="text-muted-foreground font-mono text-xs m-0">
+      Loading heatmap...
+    </p>
+  );
+  if (error) return (
+    <p className="text-muted-foreground font-mono text-xs m-0">
+      Heatmap unavailable
+    </p>
+  );
+
+  const CELL = 11, GAP = 3;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const start = new Date(today);
+  start.setDate(today.getDate() - 52 * 7 - today.getDay());
+
+  const weeks = [];
+  const monthLabels = [];
+
+  for (let w = 0; w < 53; w++) {
+    const week = [];
+    for (let d = 0; d < 7; d++) {
+      const dt = new Date(start);
+      dt.setDate(start.getDate() + w * 7 + d);
+      const key = dt.toISOString().split('T')[0];
+      week.push({ key, count: data[key] || 0, isFuture: dt > today });
+    }
+    const anchor = new Date(week[0].key);
+    if (!week[0].isFuture && anchor.getDate() <= 7) {
+      monthLabels.push({
+        label: anchor.toLocaleString('default', { month: 'short' }),
+        col: w,
+      });
+    }
+    weeks.push(week);
+  }
+
+  const shade = (count: number, isFuture: boolean) => {
+    if (isFuture) return 'transparent';
+    if (count === 0) return colors[0];
+    if (count === 1) return colors[1];
+    if (count <= 3) return colors[2];
+    if (count <= 6) return colors[3];
+    return colors[4];
+  };
+
+  return (
+    <div className="overflow-x-auto pb-1 max-w-full">
+      <div className="inline-block">
+        {/* Month labels */}
+        <div className="relative h-[18px] mb-1">
+          {monthLabels.map((m, i) => (
+            <span key={i} className="absolute text-[10px] text-muted-foreground font-mono" style={{ left: m.col * (CELL + GAP) }}>
+              {m.label}
+            </span>
+          ))}
+        </div>
+        {/* Grid */}
+        <div className="flex gap-[3px]">
+          {weeks.map((week, wi) => (
+            <div key={wi} className="flex flex-col gap-[3px]">
+              {week.map((cell, di) => (
+                <div
+                  key={di}
+                  title={cell.isFuture ? '' : `${cell.key}: ${cell.count}`}
+                  className="rounded-[2px] border border-white/5"
+                  style={{
+                    width: CELL,
+                    height: CELL,
+                    backgroundColor: shade(cell.count, cell.isFuture),
+                  }}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+        {/* Legend */}
+        <div className="flex items-center gap-1 mt-2 justify-end">
+          <span className="text-[10px] text-muted-foreground font-mono">Less</span>
+          {colors.map((c, i) => (
+            <div key={i} className="rounded-[2px] border border-white/5" style={{ width: CELL, height: CELL, backgroundColor: c }} />
+          ))}
+          <span className="text-[10px] text-muted-foreground font-mono">More</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════════════════════
+   CODEFORCES HEATMAP — uses official Codeforces API
+═══════════════════════════════════════════════════════════ */
+const CF_COLORS = ['#161b22', '#1a3a5c', '#1c5490', '#1f8dd6', '#58a6ff'];
+
+const CodeforcesHeatmap = ({ username }: { username: string }) => {
+  const [data, setData] = useState<any>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(
+          `https://codeforces.com/api/user.status?handle=${username}&from=1&count=10000`
+        );
+        if (!res.ok) throw new Error('Network error');
+        const json = await res.json();
+        if (json.status !== 'OK') throw new Error('CF API error');
+
+        const counts: any = {};
+        json.result.forEach((sub: any) => {
+          if (sub.verdict === 'OK') {
+            const key = new Date(sub.creationTimeSeconds * 1000)
+              .toISOString()
+              .split('T')[0];
+            counts[key] = (counts[key] || 0) + 1;
+          }
+        });
+        if (!cancelled) setData(counts);
+      } catch {
+        if (!cancelled) setError(true);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [username]);
+
+  return <HeatmapGrid data={data} colors={CF_COLORS} loading={loading} error={error} />;
+};
+
+
 
 const ContributionGraph = () => {
   const ref = useRef(null);
@@ -19,7 +160,7 @@ const ContributionGraph = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-heading" data-num="04.">
+          <h2 className="section-heading" data-num="03.">
             My Coding Activity
           </h2>
 
@@ -32,11 +173,8 @@ const ContributionGraph = () => {
                 </svg>
                 LeetCode Statistics
               </h3>
-              <div className="w-full flex flex-col md:flex-row gap-6 justify-center items-center">
-                <img src="https://leetcard.jacoblin.cool/Abhinandanx538?theme=dark&font=ABeeZee"
-                     alt="LeetCode Stats" className="h-48 md:h-64 object-contain" />
-                <img src="https://leetcard.jacoblin.cool/Abhinandanx538?theme=dark&font=ABeeZee&ext=heatmap"
-                     alt="LeetCode Heatmap" className="h-48 md:h-64 object-contain" />
+              <div className="w-full mt-2">
+                <LeetCodeHeatmap username="Abhinandanx538" />
               </div>
             </div>
 
@@ -47,8 +185,17 @@ const ContributionGraph = () => {
                 GitHub Contributions
               </h3>
               <div className="w-full overflow-x-auto flex items-center justify-center p-4 bg-muted/20 rounded-lg border border-border/30">
-                <img src="https://ghchart.rshah.org/4078c0/Abhinandan-KP"
-                     alt="GitHub Contribution Graph" className="w-full max-w-4xl" />
+                <GitHubCalendar
+                  username="Abhinandan-KP"
+                  colorScheme="dark"
+                  theme={{
+                    light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
+                    dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+                  }}
+                  fontSize={12}
+                  blockSize={11}
+                  blockMargin={4}
+                />
               </div>
             </div>
 
@@ -61,27 +208,13 @@ const ContributionGraph = () => {
               <div className="w-full flex flex-col md:flex-row gap-6 justify-center items-center">
                 <img src="https://codeforces-readme-stats.vercel.app/api/card?username=xmas123&theme=dark"
                      alt="Codeforces Stats" className="h-48 md:h-64 object-contain" />
-                <img src="https://uidu-codeforces-heatmap.vercel.app/api/heatmap?username=xmas123&theme=dark"
-                     alt="Codeforces Heatmap" className="h-48 md:h-64 object-contain" />
+                <div className="w-full max-w-[800px] overflow-x-auto mt-4 md:mt-0">
+                  <CodeforcesHeatmap username="xmas123" />
+                </div>
               </div>
             </div>
 
-            {/* GeeksforGeeks */}
-            <div className="bg-card rounded-xl p-6 flex flex-col items-center shadow-2xl border border-border/50 backdrop-blur-sm">
-              <h3 className="font-mono text-primary text-lg mb-6 flex items-center gap-3">
-                <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" alt="GFG" className="w-6 h-6" />
-                GeeksforGeeks Profile
-              </h3>
-              <div className="w-full flex flex-col md:flex-row gap-6 justify-center items-center">
-                <img src="https://gfgstatscard.vercel.app/api?username=abhiroznll&theme=dark"
-                     alt="GeeksforGeeks Stats" className="h-48 md:h-64 object-contain"
-                     onError={(e) => {
-                       e.currentTarget.src = "https://gfg-stats-card.vercel.app/api?username=abhiroznll&theme=dark";
-                     }} />
-                <img src="https://gfg-stats-api.vercel.app/api/heatmap/abhiroznll"
-                     alt="GeeksforGeeks Heatmap" className="h-48 md:h-64 object-contain" />
-              </div>
-            </div>
+
           </div>
         </motion.div>
       </motion.div>
